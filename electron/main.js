@@ -12,16 +12,13 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
+            //允许跨域,关闭web权限检查，
+            webSecurity: false,
             preload: path.join(__dirname, 'preload.js')
         }
     })
 
-    console.log(NODE_ENV)
-
-    // 加载 index.html
-    // mainWindow.loadFile('dist/index.html') // 此处跟electron官网路径不同，需要注意
-
-
+    // 按环境加载启动文件
     mainWindow.loadURL(
         NODE_ENV === 'development'
             ? 'http://localhost:5173'
